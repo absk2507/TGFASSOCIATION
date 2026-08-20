@@ -1,0 +1,30 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <defs>
+    <radialGradient id="sBg" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#6e3b1c"/>
+      <stop offset="60%" stop-color="#3c1e0e"/>
+      <stop offset="100%" stop-color="#190a03"/>
+    </radialGradient>
+    <linearGradient id="sGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff0aa"/>
+      <stop offset="50%" stop-color="#f5a834"/>
+      <stop offset="100%" stop-color="#ab4d09"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#sBg)"/>
+  <circle cx="300" cy="280" r="180" fill="#e8782a" opacity="0.3"/>
+  <g transform="translate(300, 320)">
+    <!-- Mukut -->
+    <path d="M-35 -140 L0 -230 L35 -140 L20 -115 L-20 -115 Z" fill="url(#sGold)"/>
+    <circle cx="0" cy="-238" r="8" fill="#fff0aa"/>
+    <!-- Face -->
+    <path d="M-50 -100 C-85 -105 -110 -55 -80 -10 C-60 15 -45 5 -40 -20" fill="#f08836"/>
+    <path d="M50 -100 C85 -105 110 -55 80 -10 C60 15 45 5 40 -20" fill="#f08836"/>
+    <path d="M-40 -95 C-50 -35 -35 20 -10 55 C0 68 15 68 20 55 C25 40 10 30 5 10 C0 -10 15 -30 20 -60 C20 -95 0 -110 -40 -95 Z" fill="#ffaa54"/>
+    <line x1="0" y1="-95" x2="0" y2="-60" stroke="#fff0aa" stroke-width="5" stroke-linecap="round"/>
+    <!-- Robe -->
+    <path d="M-110 160 C-95 65 -50 40 0 40 C50 40 95 65 110 160 Z" fill="#d9541e"/>
+    <path d="M-70 70 Q0 130 70 70" fill="none" stroke="url(#sGold)" stroke-width="8"/>
+  </g>
+  <text x="300" y="550" font-family="'Fraunces', Georgia, serif" font-size="22" font-weight="bold" fill="#fff0aa" text-anchor="middle" letter-spacing="2">2024 • SAFFRON IDOL</text>
+</svg>

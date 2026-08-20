@@ -1,0 +1,33 @@
+- [x] Rename visible branding and relevant metadata from Softwarebois to TGF ASSOCIATION.
+- [x] Remove the Aagaman countdown and its timer cards from the hero.
+- [x] Change the community ribbon wording to TGF ASSOCIATION GROUP.
+- [x] Convert the gallery and immersion displays into horizontal side-by-side album carousels.
+- [x] Remove the Lucky Draw navigation and winners content.
+- [x] Validate the revised page at desktop and mobile widths.
+- [x] Convert the Laddu Auction section into a responsive horizontal year-by-year archive rail.
+- [x] Remove auction record buttons, standardize the winner-entry card treatment, and replace pandal with Ganesh shed.
+- [x] Change the support heading to Support TGF ASSOCIATION and replace Ganesh shed terminology with TGF.
+- [x] Remove the Featured Record badge and move the member scroll controls above the member cards.
+- [x] Remove the Meet every volunteer action while retaining the member scroll indicator.
+- [x] Add a persistent visitor comment box and an administrator notification workflow.
+- [x] Include commenter name and email in every owner notification payload.
+- [x] Add an admin-only review route for stored visitor comments.
+- [x] Remove the visible orange member scroll indicator.
+- [x] Remove the member scroll indicator markup and its related CSS.
+- [x] Build and visually verify that the members section no longer shows the orange indicator.
+- [x] Diagnose missing application sources in the uploaded repository and align the deployment configuration.
+- [x] Validate the full-stack production build for built-in live hosting and save a deployment-ready checkpoint.
+- [x] Save and provide the validated live-hosting checkpoint for publishing.
+- [x] Diagnose the GitHub Pages workflow failure and replace it with a hosting-compatible live deployment path.
+- [x] Save and deliver the corrected built-in-hosting checkpoint for live publishing.
+- [x] Build and deploy the static front end correctly to GitHub Pages to remove the 404.
+- [x] Push the static Pages workflow and confirm the live GitHub Pages URL serves the generated site.
+- [x] Synchronize the corrected Pages workflow to the GitHub branch used by GitHub Actions.
+- [x] Configure the React router to render correctly under the GitHub Pages repository subpath.
+- [x] Rebuild, synchronize, and verify the router-base fix on the live GitHub Pages URL.
+- [x] Ensure the visual asset URLs are available to the static GitHub Pages deployment.
+- [x] Diagnose and repair the blank live GitHub Pages screen.
+- [x] Reproduce the plain GitHub Pages URL in a fresh browser session and inspect its runtime behavior.
+- [x] Apply and verify a concrete mitigation if the blank screen is caused by cached static assets.
+- [x] Add a one-time recovery path for stale or missing GitHub Pages client bundles.
+- [x] Verify the live root URL renders after the stale-bundle recovery deployment.

@@ -1,0 +1,30 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <defs>
+    <radialGradient id="aBg" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#543714"/>
+      <stop offset="60%" stop-color="#291907"/>
+      <stop offset="100%" stop-color="#120a02"/>
+    </radialGradient>
+    <radialGradient id="ladduGrad" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#fff2a8"/>
+      <stop offset="40%" stop-color="#ffb300"/>
+      <stop offset="80%" stop-color="#e65100"/>
+      <stop offset="100%" stop-color="#8d3000"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#aBg)"/>
+  <circle cx="300" cy="270" r="170" fill="#ffa000" opacity="0.3"/>
+  <!-- Silver Plate -->
+  <ellipse cx="300" cy="380" rx="200" ry="45" fill="#cfd8dc" stroke="#eceff1" stroke-width="4"/>
+  <ellipse cx="300" cy="375" rx="180" ry="38" fill="#b0bec5"/>
+  <!-- Grand Sacred Golden Laddu -->
+  <circle cx="300" cy="260" r="110" fill="url(#ladduGrad)"/>
+  <!-- Pistachios / Cardamom bits -->
+  <g fill="#43a047">
+    <ellipse cx="270" cy="220" rx="8" ry="4" transform="rotate(-20 270 220)"/>
+    <ellipse cx="330" cy="240" rx="7" ry="3" transform="rotate(30 330 240)"/>
+    <ellipse cx="290" cy="290" rx="8" ry="4" transform="rotate(10 290 290)"/>
+    <ellipse cx="340" cy="190" rx="6" ry="3" transform="rotate(-40 340 190)"/>
+  </g>
+  <text x="300" y="550" font-family="'Fraunces', Georgia, serif" font-size="22" font-weight="bold" fill="#ffd54f" text-anchor="middle" letter-spacing="2">LADDU AUCTION LEDGER</text>
+</svg>

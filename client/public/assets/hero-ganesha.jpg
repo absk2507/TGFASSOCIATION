@@ -1,0 +1,64 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="100%" height="100%">
+  <defs>
+    <radialGradient id="heroSky" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#4d2f66"/>
+      <stop offset="45%" stop-color="#23173a"/>
+      <stop offset="100%" stop-color="#0e0a18"/>
+    </radialGradient>
+    <radialGradient id="glowGold" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffd57a" stop-opacity="0.85"/>
+      <stop offset="50%" stop-color="#e89838" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#23173a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="goldArch" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8c6018"/>
+      <stop offset="30%" stop-color="#ffd875"/>
+      <stop offset="50%" stop-color="#fff1c2"/>
+      <stop offset="70%" stop-color="#ffd875"/>
+      <stop offset="100%" stop-color="#8c6018"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="700" fill="url(#heroSky)"/>
+  <!-- Light Rays -->
+  <circle cx="600" cy="340" r="380" fill="url(#glowGold)"/>
+  <!-- Mandap Arch -->
+  <path d="M250 700 L250 350 Q600 80 950 350 L950 700" fill="none" stroke="url(#goldArch)" stroke-width="8"/>
+  <path d="M280 700 L280 370 Q600 130 920 370 L920 700" fill="none" stroke="url(#goldArch)" stroke-width="3" stroke-opacity="0.6"/>
+  <!-- Decorative Diyas and Lights -->
+  <g fill="#ffd57a" opacity="0.9">
+    <circle cx="600" cy="160" r="16"/>
+    <circle cx="480" cy="200" r="10"/>
+    <circle cx="720" cy="200" r="10"/>
+    <circle cx="380" cy="260" r="8"/>
+    <circle cx="820" cy="260" r="8"/>
+    <circle cx="300" cy="340" r="8"/>
+    <circle cx="900" cy="340" r="8"/>
+  </g>
+  <!-- Grand Ganesha Silhouette & Illumination -->
+  <g transform="translate(600, 420)">
+    <!-- Aura halo -->
+    <circle cx="0" cy="-60" r="140" fill="#ffd777" opacity="0.25"/>
+    <circle cx="0" cy="-60" r="100" fill="#ffd777" opacity="0.4"/>
+    <!-- Crown / Mukut -->
+    <path d="M-40 -150 L0 -240 L40 -150 L25 -130 L-25 -130 Z" fill="url(#goldArch)"/>
+    <circle cx="0" cy="-250" r="10" fill="#fff1c2"/>
+    <!-- Head & Ears -->
+    <path d="M-60 -110 C-110 -120 -130 -60 -90 -10 C-70 15 -50 0 -45 -30" fill="#ffd875" opacity="0.9"/>
+    <path d="M60 -110 C110 -120 130 -60 90 -10 C70 15 50 0 45 -30" fill="#ffd875" opacity="0.9"/>
+    <!-- Trunk & Face -->
+    <path d="M-50 -110 C-60 -40 -40 20 -15 60 C-5 75 15 75 20 60 C25 45 10 35 5 15 C0 -10 20 -30 25 -70 C25 -110 0 -130 -50 -110 Z" fill="url(#goldArch)"/>
+    <!-- Tilak -->
+    <line x1="0" y1="-115" x2="0" y2="-75" stroke="#d33636" stroke-width="7" stroke-linecap="round"/>
+    <circle cx="0" cy="-68" r="6" fill="#ffd875"/>
+    <!-- Body / Garments -->
+    <path d="M-130 180 C-120 70 -70 50 0 50 C70 50 120 70 130 180 Z" fill="#d37836"/>
+    <!-- Blessing hand (Abhaya Mudra) -->
+    <circle cx="95" cy="40" r="24" fill="#ffd875"/>
+    <!-- Modak Plate -->
+    <ellipse cx="-85" cy="50" rx="30" ry="14" fill="url(#goldArch)"/>
+    <circle cx="-85" cy="42" r="10" fill="#ffea9f"/>
+  </g>
+  <!-- Festoon / Toran -->
+  <path d="M0 40 Q300 120 600 40 Q900 120 1200 40" fill="none" stroke="#d37836" stroke-width="12"/>
+  <path d="M0 40 Q300 120 600 40 Q900 120 1200 40" fill="none" stroke="#ffd875" stroke-width="4" stroke-dasharray="14 10"/>
+</svg>

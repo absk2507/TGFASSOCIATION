@@ -1,0 +1,22 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <defs>
+    <radialGradient id="pBg" cx="50%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#32336a"/>
+      <stop offset="60%" stop-color="#181938"/>
+      <stop offset="100%" stop-color="#0a0a1a"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="600" fill="url(#pBg)"/>
+  <!-- Gulal / Powder bursts -->
+  <circle cx="200" cy="220" r="110" fill="#f06292" opacity="0.45"/>
+  <circle cx="380" cy="200" r="120" fill="#ffb74d" opacity="0.45"/>
+  <circle cx="300" cy="280" r="90" fill="#ba68c8" opacity="0.5"/>
+  <!-- Dhol & Procession Silhouette -->
+  <g transform="translate(300, 360)" fill="#fffaf0">
+    <ellipse cx="0" cy="-60" rx="45" ry="30" fill="#ffd54f"/>
+    <path d="M-90 40 Q0 -30 90 40 L70 90 L-70 90 Z" fill="#d37836"/>
+    <circle cx="-110" cy="-10" r="18" fill="#ffd54f"/>
+    <circle cx="110" cy="-10" r="18" fill="#ffd54f"/>
+  </g>
+  <text x="300" y="550" font-family="'Fraunces', Georgia, serif" font-size="22" font-weight="bold" fill="#ffd54f" text-anchor="middle" letter-spacing="2">NIMARJANAM • PROCESSION</text>
+</svg>
