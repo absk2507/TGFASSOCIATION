@@ -1,5 +1,4 @@
 {
-  "": "https://openapi.vercel.sh/vercel.json",
   "framework": "vite",
   "outputDirectory": "dist/public",
   "rewrites": [
