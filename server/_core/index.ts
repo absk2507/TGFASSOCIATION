@@ -1,4 +1,4 @@
-﻿import 'dotenv/config';
+import 'dotenv/config';
 import express from 'express';
 import { createServer } from 'http';
 import net from 'net';
@@ -25,7 +25,7 @@ async function findAvailablePort(startPort = 3000): Promise<number> {
       return port;
     }
   }
-  throw new Error(No available port found starting from );
+  throw new Error(`No available port found starting from ${startPort}`);
 }
 
 export async function startServer() {
@@ -50,10 +50,10 @@ export async function startServer() {
   const preferredPort = parseInt(process.env.PORT || '3000');
   const port = await findAvailablePort(preferredPort);
   if (port !== preferredPort) {
-    console.log(Port  is busy, using port  instead);
+    console.log(`Port ${preferredPort} is busy, using port ${port} instead`);
   }
   server.listen(port, () => {
-    console.log(Server running on http://localhost:/);
+    console.log(`Server running on http://localhost:${port}/`);
   });
 }
 

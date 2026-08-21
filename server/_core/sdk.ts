@@ -1,4 +1,4 @@
-﻿import { COOKIE_NAME, ONE_YEAR_MS, decodeOAuthState } from '../../shared/const';
+import { COOKIE_NAME, ONE_YEAR_MS, decodeOAuthState } from '../../shared/const';
 import { ForbiddenError } from '../../shared/_core/errors';
 import axios, { type AxiosInstance } from 'axios';
 import { parse as parseCookieHeader } from 'cookie';
@@ -10,9 +10,9 @@ import { ENV } from './env';
 const isNonEmptyString = (value: unknown): value is string =>
   typeof value === 'string' && value.length > 0;
 
-const EXCHANGE_TOKEN_PATH = /webdev.v1.WebDevAuthPublicService/ExchangeToken;
-const GET_USER_INFO_PATH = /webdev.v1.WebDevAuthPublicService/GetUserInfo;
-const GET_USER_INFO_WITH_JWT_PATH = /webdev.v1.WebDevAuthPublicService/GetUserInfoWithJwt;
+const EXCHANGE_TOKEN_PATH = '/webdev.v1.WebDevAuthPublicService/ExchangeToken';
+const GET_USER_INFO_PATH = '/webdev.v1.WebDevAuthPublicService/GetUserInfo';
+const GET_USER_INFO_WITH_JWT_PATH = '/webdev.v1.WebDevAuthPublicService/GetUserInfoWithJwt';
 
 export class OAuthService {
   constructor(private client: AxiosInstance) {}

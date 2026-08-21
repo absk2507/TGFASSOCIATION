@@ -1,4 +1,4 @@
-﻿import { TRPCError } from '@trpc/server';
+import { TRPCError } from '@trpc/server';
 import { ENV } from './env';
 
 const TITLE_MAX_LENGTH = 1200;
@@ -28,13 +28,13 @@ export async function notifyOwner(payload: NotificationPayload): Promise<boolean
   }
 
   if (!ENV.forgeApiUrl || !ENV.forgeApiKey) {
-    console.info([Notification Mock] : );
+    console.info(`[Notification Mock] ${title}: ${content}`);
     return true;
   }
 
   const endpoint = new URL(
     'webdevtoken.v1.WebDevService/SendNotification',
-    ENV.forgeApiUrl.endsWith('/') ? ENV.forgeApiUrl : ${ENV.forgeApiUrl}/
+    ENV.forgeApiUrl.endsWith('/') ? ENV.forgeApiUrl : `${ENV.forgeApiUrl}/`
   ).toString();
 
   try {
@@ -42,7 +42,7 @@ export async function notifyOwner(payload: NotificationPayload): Promise<boolean
       method: 'POST',
       headers: {
         accept: 'application/json',
-        authorization: Bearer ,
+        authorization: `Bearer ${ENV.forgeApiKey}`,
         'content-type': 'application/json',
         'connect-protocol-version': '1',
       },
@@ -50,7 +50,7 @@ export async function notifyOwner(payload: NotificationPayload): Promise<boolean
     });
 
     if (!response.ok) {
-      console.warn([Notification] Failed ());
+      console.warn(`[Notification] Failed (${response.status})`);
       return false;
     }
     return true;

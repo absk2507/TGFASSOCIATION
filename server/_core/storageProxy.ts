@@ -1,4 +1,4 @@
-﻿import type { Express, Request, Response } from 'express';
+import type { Express, Request, Response } from 'express';
 import { ENV } from './env';
 
 export function registerStorageProxy(app: Express) {
@@ -19,7 +19,7 @@ export function registerStorageProxy(app: Express) {
       );
       forgeUrl.searchParams.set('path', key);
       const forgeResp = await fetch(forgeUrl, {
-        headers: { Authorization: Bearer  },
+        headers: { Authorization: `Bearer ${ENV.forgeApiKey}` },
       });
       if (!forgeResp.ok) {
         res.status(502).send('Storage backend error');
