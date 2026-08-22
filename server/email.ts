@@ -5,6 +5,8 @@ export interface CommentEmailPayload {
   name: string;
   message: string;
   submittedAt?: Date;
+  customSubject?: string;
+  customBody?: string;
 }
 
 export interface EmailDeliveryResult {
@@ -60,7 +62,7 @@ ${formattedDateTime}`;
  * Attempts real email delivery using configured providers:
  * 1. Resend API (if RESEND_API_KEY is present)
  * 2. SendGrid API (if SENDGRID_API_KEY is present)
- * 3. SMTP / Gmail App Password (if SMTP_PASS is present)
+ * 3. SMTP / Gmail App Password (if SMTP_PASS or SMTP_PASSWORD is present)
  * 4. Built-in Forge notification service (if BUILT_IN_FORGE_API_KEY is present)
  *
  * If no provider is configured, returns failure so frontend will not show a false success message.
@@ -77,7 +79,9 @@ export async function sendCommentEmailNotification(payload: CommentEmailPayload)
     };
   }
 
-  const { subject, bodyText } = buildEmailContent(name, message, date);
+  const { subject: defaultSubject, bodyText: defaultBody } = buildEmailContent(name, message, date);
+  const subject = payload.customSubject || defaultSubject;
+  const bodyText = payload.customBody || defaultBody;
   const destinationEmail = process.env.NOTIFICATION_EMAIL || TARGET_NOTIFICATION_EMAIL;
 
   const errors: string[] = [];
@@ -122,7 +126,7 @@ export async function sendCommentEmailNotification(payload: CommentEmailPayload)
   // ==========================================
   // Provider 2: SendGrid API (REST API over HTTPS)
   // ==========================================
-  const sendgridApiKey = process.env.SENDGRID_API_KEY;
+  const sendgridApiKey = process.env.SENDGRID_API_KEY || process.env.SENDGRID_APIKEY;
   if (sendgridApiKey) {
     try {
       const fromEmail = process.env.EMAIL_FROM || destinationEmail;
@@ -158,8 +162,8 @@ export async function sendCommentEmailNotification(payload: CommentEmailPayload)
   // ==========================================
   // Provider 3: SMTP (Nodemailer / Gmail App Password)
   // ==========================================
-  const smtpPass = process.env.SMTP_PASS;
-  const smtpUser = process.env.SMTP_USER || destinationEmail;
+  const smtpPass = process.env.SMTP_PASS || process.env.SMTP_PASSWORD;
+  const smtpUser = process.env.SMTP_USER || process.env.SMTP_USERNAME || destinationEmail;
 
   if (smtpPass) {
     try {
@@ -233,7 +237,7 @@ export async function sendCommentEmailNotification(payload: CommentEmailPayload)
   // If we reach here, NO provider succeeded or NO provider was configured
   const finalError = errors.length > 0
     ? `Email delivery failed: ${errors.join("; ")}`
-    : "No email provider configured. Please set SMTP_USER & SMTP_PASS (Gmail App Password) or RESEND_API_KEY in your Render environment variables.";
+    : "No email provider configured. Please set SMTP_USER & SMTP_PASS (or SMTP_PASSWORD) for Gmail, or RESEND_API_KEY in your Render environment variables.";
 
   console.error(`[Email Service Error] ${finalError}`);
   return {
