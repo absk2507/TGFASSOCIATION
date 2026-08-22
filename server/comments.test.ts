@@ -1,41 +1,64 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const { createComment, getComments, notifyOwner } = vi.hoisted(() => ({
+const { createComment, getComments, sendCommentEmailNotification } = vi.hoisted(() => ({
   createComment: vi.fn(),
   getComments: vi.fn(),
-  notifyOwner: vi.fn(),
+  sendCommentEmailNotification: vi.fn(),
 }));
 
 vi.mock("./db", () => ({ createComment, getComments }));
-vi.mock("./_core/notification", () => ({ notifyOwner }));
+vi.mock("./email", () => ({ sendCommentEmailNotification }));
 
 import { appRouter } from "./routers";
 
 describe("comments.submit", () => {
   beforeEach(() => {
     createComment.mockResolvedValue(undefined);
-    notifyOwner.mockResolvedValue(true);
+    sendCommentEmailNotification.mockResolvedValue(true);
   });
 
-  it("stores a public comment and notifies the project owner", async () => {
+  it("stores a valid comment and dispatches email notification", async () => {
     const caller = appRouter.createCaller({ user: null } as never);
 
     const result = await caller.comments.submit({
       name: "Sita",
-      email: "sita@example.com",
-      message: "Beautiful TGF celebration.",
+      message: "Beautiful TGF celebration memories.",
     });
 
     expect(createComment).toHaveBeenCalledWith({
       name: "Sita",
-      email: "sita@example.com",
-      message: "Beautiful TGF celebration.",
+      email: null,
+      message: "Beautiful TGF celebration memories.",
     });
-    expect(notifyOwner).toHaveBeenCalledWith({
-      title: "New TGF ASSOCIATION comment",
-      content: "From: Sita\nEmail: sita@example.com\nComment: Beautiful TGF celebration.",
-    });
+    expect(sendCommentEmailNotification).toHaveBeenCalledWith(
+      expect.objectContaining({
+        name: "Sita",
+        message: "Beautiful TGF celebration memories.",
+      })
+    );
     expect(result).toEqual({ success: true, notified: true });
+  });
+
+  it("rejects empty or missing name", async () => {
+    const caller = appRouter.createCaller({ user: null } as never);
+
+    await expect(
+      caller.comments.submit({
+        name: "   ",
+        message: "Valid comment",
+      })
+    ).rejects.toThrow();
+  });
+
+  it("rejects empty or whitespace-only comment", async () => {
+    const caller = appRouter.createCaller({ user: null } as never);
+
+    await expect(
+      caller.comments.submit({
+        name: "Sita",
+        message: "   ",
+      })
+    ).rejects.toThrow();
   });
 
   it("returns stored comments to an administrator", async () => {

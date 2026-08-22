@@ -91,6 +91,13 @@ const youthMembers = [
   { name: "Sravan", role: "Volunteer", initials: "S", hue: "#50528f" },
 ];
 
+const contactPhones = [
+  { raw: "+919059307481", display: "+91 90593 07481", id: "phone1" },
+  { raw: "+919391277632", display: "+91 93912 77632", id: "phone2" },
+  { raw: "+917386616435", display: "+91 73866 16435", id: "phone3" },
+];
+const contactEmail = "tgfassociation@gmail.com";
+
 function SectionHeading({ icon, eyebrow, title, description }: { icon: React.ReactNode; eyebrow: string; title: string; description: string }) {
   return (
     <div className="section-heading">
@@ -107,31 +114,52 @@ function scrollToId(id: string) {
 
 export default function Home() {
   const [openMenu, setOpenMenu] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const submitComment = trpc.comments.submit.useMutation({
-    onSuccess: result => {
-      toast.success(result.notified ? "Comment saved — TGF ASSOCIATION has been notified." : "Comment saved for TGF ASSOCIATION.");
+    onSuccess: () => {
+      toast.success("Thank you! Your comment has been sent to TGF Association.");
     },
-    onError: () => toast.error("Your comment could not be sent. Please try again."),
+    onError: () => toast.error("Sorry, we couldn't send your comment. Please try again."),
   });
 
-  const copyUpi = async () => {
-    await navigator.clipboard?.writeText("tgfassociation@upi");
-    setCopied(true);
-    toast.success("UPI ID copied to your clipboard");
-    window.setTimeout(() => setCopied(false), 1800);
+  const copyToClipboard = async (text: string, key: string, label: string) => {
+    try {
+      await navigator.clipboard?.writeText(text);
+      setCopiedKey(key);
+      toast.success(`${label} copied to your clipboard`);
+      window.setTimeout(() => setCopiedKey(curr => (curr === key ? null : curr)), 1800);
+    } catch {
+      toast.error("Failed to copy to clipboard");
+    }
   };
+
+  const copyUpi = () => copyToClipboard("tgfassociation@upi", "upi", "UPI ID");
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (submitComment.isPending) return;
+
     const form = event.currentTarget;
     const values = new FormData(form);
     const name = String(values.get("name") || "").trim();
-    const email = String(values.get("email") || "").trim();
     const message = String(values.get("message") || "").trim();
 
+    if (!name) {
+      toast.error("Please enter your name.");
+      const nameInput = form.elements.namedItem("name") as HTMLInputElement | null;
+      nameInput?.focus();
+      return;
+    }
+
+    if (!message) {
+      toast.error("Please enter your comment.");
+      const messageInput = form.elements.namedItem("message") as HTMLTextAreaElement | null;
+      messageInput?.focus();
+      return;
+    }
+
     submitComment.mutate(
-      { name: name || undefined, email: email || undefined, message },
+      { name, message },
       { onSuccess: () => form.reset() },
     );
   };
@@ -341,7 +369,7 @@ export default function Home() {
             <SectionHeading icon={<Heart size={14} />} eyebrow="Support" title="Support TGF ASSOCIATION" description="Contributions support TGF, decorations, prasadam, sound system, idol, and community gifts." />
             <div className="support-layout">
               <div className="qr-card" aria-label="QR code placeholder"><div className="qr-folio">NTR NAGAR LEDGER / 2026</div><div className="qr-grid"><div className="qr-center">₹</div></div><span>Scan to support via UPI</span></div>
-              <div className="support-card"><div className="upi-apps"><span>PhonePe</span><span>Google Pay</span><span>Paytm</span><span>BHIM</span></div><h3>Support TGF ASSOCIATION</h3><p>Scan the QR code or use the UPI ID below from any UPI app.</p><div className="upi-id"><div><span>UPI ID</span><b>tgfassociation@upi</b></div><button onClick={copyUpi}>{copied ? <Check size={15} /> : <Copy size={15} />}{copied ? "Copied" : "Copy"}</button></div></div>
+              <div className="support-card"><div className="upi-apps"><span>PhonePe</span><span>Google Pay</span><span>Paytm</span><span>BHIM</span></div><h3>Support TGF ASSOCIATION</h3><p>Scan the QR code or use the UPI ID below from any UPI app.</p><div className="upi-id"><div><span>UPI ID</span><b>tgfassociation@upi</b></div><button onClick={copyUpi}>{copiedKey === "upi" ? <Check size={15} /> : <Copy size={15} />}{copiedKey === "upi" ? "Copied" : "Copy"}</button></div></div>
             </div>
           </div>
         </section>
@@ -349,14 +377,81 @@ export default function Home() {
         <section className="chapter divider" id="find-us">
           <div className="wide-container">
             <SectionHeading icon={<MapPin size={14} />} eyebrow="Find us" title="The way back to NTR NAGAR" description="Visit TGF in NTR NAGAR, or find a familiar TGF ASSOCIATION voice for celebration updates and contributions." />
-            <div className="contact-grid"><article className="contact-card"><div className="contact-icon"><HomeIcon size={20} /></div><h3>TGF ASSOCIATION</h3><p>NTR NAGAR, ROAD NO:10, 11, 12.</p><a className="button primary compact" href="https://maps.app.goo.gl/GNckd875jwQb6S1v5?g_st=ic" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}><MapPin size={14} /> Pin TGF</a></article><article className="contact-card"><div className="contact-icon saffron"><MessageCircleHeart size={20} /></div><h3>Reach our circle</h3><a href="tel:+919059307481"><Phone size={13} /> +91 90593 07481</a><a href="tel:+919391277632"><Phone size={13} /> +91 93912 77632</a><a href="tel:+917386616435"><Phone size={13} /> +91 73866 16435</a><a href="mailto:tgfassociation@gmail.com"><Mail size={13} /> tgfassociation@gmail.com</a></article></div>
+            <div className="contact-grid">
+              <article className="contact-card">
+                <div className="contact-icon"><HomeIcon size={20} /></div>
+                <h3>TGF ASSOCIATION</h3>
+                <p>NTR NAGAR, ROAD NO:10, 11, 12.</p>
+                <a className="button primary compact" href="https://maps.app.goo.gl/GNckd875jwQb6S1v5?g_st=ic" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}><MapPin size={14} /> Pin TGF</a>
+              </article>
+              <article className="contact-card">
+                <div className="contact-icon saffron"><MessageCircleHeart size={20} /></div>
+                <h3>Reach our circle</h3>
+                {contactPhones.map(phone => (
+                  <div className="contact-item-row" key={phone.id}>
+                    <a href={`tel:${phone.raw}`} aria-label={`Call ${phone.display}`}><Phone size={13} /> {phone.display}</a>
+                    <button
+                      type="button"
+                      className="copy-btn"
+                      onClick={() => copyToClipboard(phone.display, phone.id, phone.display)}
+                      aria-label={`Copy phone number ${phone.display}`}
+                      title="Copy phone number"
+                    >
+                      {copiedKey === phone.id ? <Check size={13} className="text-emerald-600" /> : <Copy size={13} />}
+                      <span>{copiedKey === phone.id ? "Copied!" : "Copy"}</span>
+                    </button>
+                  </div>
+                ))}
+                <div className="contact-item-row">
+                  <a href={`mailto:${contactEmail}`} aria-label={`Email ${contactEmail}`}><Mail size={13} /> {contactEmail}</a>
+                  <button
+                    type="button"
+                    className="copy-btn"
+                    onClick={() => copyToClipboard(contactEmail, "email", contactEmail)}
+                    aria-label="Copy email address"
+                    title="Copy email address"
+                  >
+                    {copiedKey === "email" ? <Check size={13} className="text-emerald-600" /> : <Copy size={13} />}
+                    <span>{copiedKey === "email" ? "Copied!" : "Copy"}</span>
+                  </button>
+                </div>
+              </article>
+            </div>
           </div>
         </section>
 
         <section className="chapter divider feedback-section" id="feedback">
           <div className="wide-container">
             <SectionHeading icon={<Mail size={14} />} eyebrow="Comments" title="Share a comment with TGF" description="Every comment is saved for TGF ASSOCIATION and sends an owner notification when it arrives." />
-            <form className="feedback-form" onSubmit={handleSubmit}><label>Your name <span>(optional)</span><input name="name" maxLength={120} placeholder="Your name" /></label><label>Email <span>(optional)</span><input name="email" type="email" maxLength={320} placeholder="yourname@example.com" /></label><label className="comment-field">Your comment<textarea name="message" required minLength={3} maxLength={2000} placeholder="Write your comment here..." /></label><button className="button primary compact" type="submit" disabled={submitComment.isPending}>{submitComment.isPending ? "Sending..." : "Send comment"} <ArrowRight size={14} /></button></form>
+            <form className="feedback-form" onSubmit={handleSubmit} noValidate>
+              <label>
+                Name *
+                <input
+                  name="name"
+                  required
+                  maxLength={120}
+                  placeholder="Your name"
+                  disabled={submitComment.isPending}
+                />
+              </label>
+              <label className="comment-field">
+                Comment *
+                <textarea
+                  name="message"
+                  required
+                  maxLength={2000}
+                  placeholder="Write your comment here..."
+                  disabled={submitComment.isPending}
+                />
+              </label>
+              <button
+                className="button primary compact"
+                type="submit"
+                disabled={submitComment.isPending}
+              >
+                {submitComment.isPending ? "Sending..." : "Send comment"} <ArrowRight size={14} />
+              </button>
+            </form>
           </div>
         </section>
       </main>

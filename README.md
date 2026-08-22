@@ -1,4 +1,4 @@
-﻿# TGF ASSOCIATION — Rampuram (Softwarebois Reimagined)
+# TGF ASSOCIATION — Rampuram (Softwarebois Reimagined)
 
 A festival community archive and website celebrating Ganesh Chaturthi in Rampuram, Pendurthi (Visakhapatnam) with annual idol galleries, Nimarjanam memories, Laddu auction ledger, youth gang, donations via UPI, and visitor comments.
 
@@ -17,7 +17,7 @@ A festival community archive and website celebrating Ganesh Chaturthi in Rampura
 2. **Upload your code to GitHub:**
    - Using Git in your terminal/command prompt:
      ```bash
-     cd "C:\Users\abhifrooti\Downloads\softwarebois-reimagined (1)"
+     cd tgf-association
      git init
      git add .
      git commit -m "Initial commit of TGF Association"
