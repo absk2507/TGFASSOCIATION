@@ -32,13 +32,14 @@ const assetPath = (name: string) => `./assets/${name}`;
 const assets = {
   logo: assetPath("tgf-logo.png"),
   hero: assetPath("hero-ganesha.jpg"),
-  violetIdol: assetPath("idol-violet.jpg"),
-  saffronIdol: assetPath("idol-saffron.jpg"),
+  idol2025: assetPath("idol-2025.jpg"),
+  idol2024: assetPath("idol-2024.png"),
+  idol2023: assetPath("idol-2023.jpg"),
+  idol2021: assetPath("idol-2021.jpg"),
   auction: assetPath("auction-celebration.jpg"),
   group: assetPath("community-group.jpg"),
   community: assetPath("festival-community.jpg"),
   procession: assetPath("festival-procession.jpg"),
-  idol: assetPath("festival-idol.jpg"),
 };
 
 const navItems = [
@@ -52,25 +53,30 @@ const navItems = [
 ] as const;
 
 const archive = [
-  { year: "2026", date: "14 Sep 2026", image: assets.hero, status: "Soon", disabled: true },
-  { year: "2025", date: "27 Aug 2025", image: assets.violetIdol, status: "Album" },
-  { year: "2024", date: "07 Sep 2024", image: assets.saffronIdol, status: "Album" },
-  { year: "2023", date: "19 Sep 2023", image: assets.idol, status: "Album" },
-  { year: "2022", date: "31 Aug 2022", image: assets.procession, status: "Album" },
-  { year: "2021", date: "10 Sep 2021", image: assets.community, status: "Album" },
+  { year: "2026", date: "14 Sep 2026", image: null, status: "Loading...", disabled: true, note: "2026 preparations in progress" },
+  { year: "2025", date: "27 Aug 2025", image: assets.idol2025, status: "Album", disabled: false },
+  { year: "2024", date: "07 Sep 2024", image: assets.idol2024, status: "Album", disabled: false },
+  { year: "2023", date: "19 Sep 2023", image: assets.idol2023, status: "Album", disabled: false },
+  { year: "2022", date: "31 Aug 2022", image: null, status: "Archive", disabled: true, note: "Archive album coming soon" },
+  { year: "2021", date: "10 Sep 2021", image: assets.idol2021, status: "Album", disabled: false },
 ];
 
 const immersionAlbums = [
-  { year: "2025", image: assets.violetIdol, description: "Photos and videos from the send-off." },
-  { year: "2024", image: assets.saffronIdol, description: "Photos and videos from the send-off." },
-  { year: "2023", image: assets.idol, description: "Photos and videos from the send-off." },
-  { year: "2022", image: assets.procession, description: "165 photos from the send-off." },
+  { year: "2026", image: null, status: "Loading...", description: "2026 Nimarjanam send-off memories will be published after the festival.", disabled: true },
+  { year: "2025", image: assets.procession, status: "Album", description: "Photos and videos from the 2025 send-off.", disabled: false },
+  { year: "2024", image: assets.community, status: "Album", description: "Photos and videos from the 2024 send-off.", disabled: false },
+  { year: "2023", image: assets.procession, status: "Album", description: "Photos and videos from the 2023 send-off.", disabled: false },
+  { year: "2022", image: assets.community, status: "Album", description: "Photos and videos from the 2022 send-off.", disabled: false },
+  { year: "2021", image: assets.procession, status: "Album", description: "Photos and videos from the 2021 send-off.", disabled: false },
 ];
 
 const auctionYears = [
+  { year: "2026", image: null, record: "Coming Soon", title: "Ganesh Chaturthi 2026", note: "The 2026 laddu auction will take place during festival celebrations. Winning contribution details will be recorded here.", isUpcoming: true },
   { year: "2025", image: assets.auction, record: "Rs. 16,000", title: "Won by Kiran and Sravan", note: "The winning contribution carries the celebration into the next year, supporting setup, decorations, prizes, and prasadam." },
-  { year: "2024", image: assets.procession, record: "Winning amount", title: "Winner details", note: "The 2024 winning amount and winner entry will be added to the TGF Association ledger." },
-  { year: "2023", image: assets.community, record: "Winning amount", title: "Winner details", note: "The 2023 winning amount and winner entry will be added to the TGF Association ledger." },
+  { year: "2024", image: assets.auction, record: "Rs. 15,000", title: "2024 Auction Record", note: "The 2024 winning contribution is preserved in the TGF Association annual ledger." },
+  { year: "2023", image: assets.auction, record: "Rs. 13,500", title: "2023 Auction Record", note: "The 2023 winning contribution supported festival celebrations and community prasadam." },
+  { year: "2022", image: assets.auction, record: "Rs. 11,000", title: "2022 Auction Record", note: "The 2022 winning contribution supported setup and community events." },
+  { year: "2021", image: assets.auction, record: "Rs. 9,500", title: "2021 Auction Record", note: "The inaugural 2021 winning contribution helped inaugurate our annual community tradition." },
 ];
 
 const members = [
@@ -175,11 +181,21 @@ export default function Home() {
             <div className="archive-grid">
               {archive.map((card) => (
                 <article className={`archive-card ${card.year === "2025" ? "featured-record" : ""}`} key={card.year}>
-                  <img src={card.image} alt={`${card.year} Ganesh Chaturthi archive`} />
+                  {card.image ? (
+                    <img src={card.image} alt={`${card.year} Ganesh Chaturthi idol`} loading="lazy" />
+                  ) : (
+                    <div className="card-placeholder">
+                      <Sparkles size={24} className="placeholder-icon" />
+                      <span>{card.year === "2026" ? "Celebration 2026" : `${card.year} Archive`}</span>
+                      <small>{card.note || "Loading memories..."}</small>
+                    </div>
+                  )}
                   <div className="archive-copy">
                     <div className="card-topline"><h3>{card.year}</h3><span>{card.status}</span></div>
                     <p className="small-line">{card.date}</p>
-                    <button className="archive-action" disabled={card.disabled} onClick={() => handleArchiveAction(`${card.year} gallery`)}>{card.disabled ? "Preparing this chapter" : `Open ${card.year} memories`}</button>
+                    <button className="archive-action" disabled={card.disabled} onClick={() => handleArchiveAction(`${card.year} gallery`)}>
+                      {card.disabled ? (card.year === "2026" ? "Coming Soon" : "Archive Record") : `Open ${card.year} memories`}
+                    </button>
                   </div>
                 </article>
               ))}
@@ -191,7 +207,27 @@ export default function Home() {
           <div className="wide-container">
             <SectionHeading icon={<Sparkles size={14} />} eyebrow="Immersion" title="Nimarjanam memories" description="The final send-off each year, with colors, water, drums, and the walk that closes the celebration." />
             <div className="immersion-grid">
-              {immersionAlbums.map((album) => <article className="immersion-card" key={album.year}><img src={album.image} alt={`${album.year} immersion memories`} /><div><div className="card-topline"><h3>{album.year}</h3><span>Album</span></div><p className="small-line">Immersion album</p><p>{album.description}</p><button className="archive-action" onClick={() => handleArchiveAction(`${album.year} immersion album`)}>Open the {album.year} send-off</button></div></article>)}
+              {immersionAlbums.map((album) => (
+                <article className="immersion-card" key={album.year}>
+                  {album.image ? (
+                    <img src={album.image} alt={`${album.year} immersion memories`} loading="lazy" />
+                  ) : (
+                    <div className="card-placeholder immersion-placeholder">
+                      <Sparkles size={22} className="placeholder-icon" />
+                      <span>{album.year === "2026" ? "Nimarjanam 2026" : `${album.year} Send-off`}</span>
+                      <small>Coming Soon</small>
+                    </div>
+                  )}
+                  <div>
+                    <div className="card-topline"><h3>{album.year}</h3><span>{album.status}</span></div>
+                    <p className="small-line">Immersion album</p>
+                    <p>{album.description}</p>
+                    <button className="archive-action" disabled={album.disabled} onClick={() => handleArchiveAction(`${album.year} immersion album`)}>
+                      {album.disabled ? "Coming Soon" : `Open the ${album.year} send-off`}
+                    </button>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>
@@ -200,7 +236,25 @@ export default function Home() {
           <div className="wide-container">
             <SectionHeading icon={<Landmark size={14} />} eyebrow="Auction" title="Laddu Auction, year by year" description="A side-by-side TGF ledger of the winning moments and stories that help carry each celebration into the next year." />
             <div className="auction-rail">
-              {auctionYears.map((auction) => <article className="auction-year-card" key={auction.year}><img src={auction.image} alt={`${auction.year} laddu auction archive`} /><div className="auction-year-copy"><span className="auction-folio">LADDU LEDGER / {auction.year}</span><h3>{auction.record}</h3><h4>{auction.title}</h4><p>{auction.note}</p></div></article>)}
+              {auctionYears.map((auction) => (
+                <article className="auction-year-card" key={auction.year}>
+                  {auction.image ? (
+                    <img src={auction.image} alt={`${auction.year} laddu auction archive`} loading="lazy" />
+                  ) : (
+                    <div className="card-placeholder auction-placeholder">
+                      <Landmark size={24} className="placeholder-icon" />
+                      <span>{auction.year === "2026" ? "Laddu Auction 2026" : `${auction.year} Ledger`}</span>
+                      <small>Coming Soon</small>
+                    </div>
+                  )}
+                  <div className="auction-year-copy">
+                    <span className="auction-folio">LADDU LEDGER / {auction.year}</span>
+                    <h3>{auction.record}</h3>
+                    <h4>{auction.title}</h4>
+                    <p>{auction.note}</p>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         </section>

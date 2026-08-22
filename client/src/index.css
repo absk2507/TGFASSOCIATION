@@ -104,6 +104,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .archive-action:hover { background: #373979; transform: translateY(-1px); }
 .featured-record .archive-action { background: #d37836; border-color: #d37836; }.featured-record .archive-action:hover { background: #bb6125; }
 .archive-action:disabled { background: #eee9df; border-color: #e2dacc; color: #aaa3a0; cursor: not-allowed; }
+.card-placeholder { height: 255px; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .45rem; background: radial-gradient(circle at center, #2e2c54 0%, #1c1a36 100%); color: #f7e6c4; border-bottom: 2px solid #c79d45; text-align: center; padding: 1rem; }
+.card-placeholder .placeholder-icon { color: #f2b150; }
+.card-placeholder span { font: 600 1.05rem "Fraunces", Georgia, serif; color: #fffaf0; }
+.card-placeholder small { font-size: .62rem; color: #ded8cb; max-width: 190px; }
+.immersion-placeholder { height: 220px; }
+.auction-placeholder { height: 230px; }
 
 .immersion-grid { display: flex; gap: .9rem; overflow-x: auto; scroll-snap-type: x mandatory; padding: .15rem .15rem 1.1rem; scrollbar-color: #26275e #eadfca; scrollbar-width: thin; }
 .immersion-card { flex: 0 0 calc((100% - 2.7rem) / 4); }
