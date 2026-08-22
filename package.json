@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "dev:server": "tsx watch server/index.ts",
-    "build": "vite build",
+    "build": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
     "build:server": "vite build && esbuild server/index.ts --platform=node --packages=external --bundle --format=esm --outdir=dist",
     "build:pages": "vite build",
     "postbuild": "node -e \"import('node:fs').then(fs => { if(fs.existsSync('dist/public/index.html')) fs.copyFileSync('dist/public/index.html', 'dist/public/404.html'); })\"",

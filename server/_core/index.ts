@@ -42,18 +42,21 @@ export async function startServer() {
       createContext,
     })
   );
+  app.get(['/api/health', '/healthz'], (_req, res) => {
+    res.status(200).json({ status: 'ok', timestamp: Date.now() });
+  });
   if (process.env.NODE_ENV === 'development') {
     await setupVite(app, server);
   } else {
     serveStatic(app);
   }
-  const preferredPort = parseInt(process.env.PORT || '3000');
-  const port = await findAvailablePort(preferredPort);
-  if (port !== preferredPort) {
-    console.log(`Port ${preferredPort} is busy, using port ${port} instead`);
+  const host = '0.0.0.0';
+  let port = parseInt(process.env.PORT || '3000', 10);
+  if (process.env.NODE_ENV === 'development' && !process.env.PORT) {
+    port = await findAvailablePort(port);
   }
-  server.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}/`);
+  server.listen(port, host, () => {
+    console.log(`Server running on http://${host}:${port}/`);
   });
 }
 
