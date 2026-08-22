@@ -14,7 +14,7 @@ import { appRouter } from "./routers";
 describe("comments.submit", () => {
   beforeEach(() => {
     createComment.mockResolvedValue(undefined);
-    sendCommentEmailNotification.mockResolvedValue(true);
+    sendCommentEmailNotification.mockResolvedValue({ success: true, provider: "Mock" });
   });
 
   it("stores a valid comment and dispatches email notification", async () => {
@@ -36,7 +36,23 @@ describe("comments.submit", () => {
         message: "Beautiful TGF celebration memories.",
       })
     );
-    expect(result).toEqual({ success: true, notified: true });
+    expect(result).toEqual({ success: true, notified: true, provider: "Mock" });
+  });
+
+  it("fails and throws error when email delivery fails", async () => {
+    sendCommentEmailNotification.mockResolvedValue({
+      success: false,
+      error: "SMTP connection failed",
+    });
+
+    const caller = appRouter.createCaller({ user: null } as never);
+
+    await expect(
+      caller.comments.submit({
+        name: "Sita",
+        message: "Beautiful TGF celebration memories.",
+      })
+    ).rejects.toThrow("Sorry, we couldn't send your comment. Please try again.");
   });
 
   it("rejects empty or missing name", async () => {

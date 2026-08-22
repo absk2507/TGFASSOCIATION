@@ -61,20 +61,21 @@ export const appRouter = router({
         }
 
         // Dispatch email notification to tgfassociation@gmail.com
-        const sent = await sendCommentEmailNotification({
+        const emailResult = await sendCommentEmailNotification({
           name: trimmedName,
           message: trimmedMessage,
           submittedAt: new Date(),
         });
 
-        if (!sent) {
+        if (!emailResult.success) {
+          console.error(`[Comments] Email delivery to tgfassociation@gmail.com failed: ${emailResult.error}`);
           throw new TRPCError({
             code: "INTERNAL_SERVER_ERROR",
             message: "Sorry, we couldn't send your comment. Please try again.",
           });
         }
 
-        return { success: true, notified: true } as const;
+        return { success: true, notified: true, provider: emailResult.provider } as const;
       }),
     list: adminProcedure.query(async () => getComments()),
   }),
