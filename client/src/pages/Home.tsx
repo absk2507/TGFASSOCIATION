@@ -30,15 +30,15 @@ import { trpc } from "@/lib/trpc";
 const assetPath = (name: string) => `./assets/${name}`;
 
 const assets = {
-  logo: assetPath("tgf-logo.png"),
+  logo: assetPath("tgf-logo.webp"),
   hero: assetPath("hero-ganesha.jpg"),
-  idol2025: assetPath("idol-2025.jpg"),
-  idol2024: assetPath("idol-2024.png"),
-  idol2023: assetPath("idol-2023.jpg"),
-  idol2022: assetPath("idol-2022.jpg"),
-  idol2021: assetPath("idol-2021.jpg"),
+  idol2025: assetPath("idol-2025.webp"),
+  idol2024: assetPath("idol-2024.webp"),
+  idol2023: assetPath("idol-2023.webp"),
+  idol2022: assetPath("idol-2022.webp"),
+  idol2021: assetPath("idol-2021.webp"),
   auction: assetPath("auction-celebration.jpg"),
-  group: assetPath("community-together.jpg"),
+  group: assetPath("community-together.webp"),
   community: assetPath("festival-community.jpg"),
   procession: assetPath("festival-procession.jpg"),
 };
@@ -143,7 +143,7 @@ export default function Home() {
       <header className="site-header">
         <div className="nav-shell">
           <button className="brand" onClick={() => scrollToId("top")} aria-label="TGF ASSOCIATION home">
-            <span className="brand-emblem"><img src={assets.logo} alt="" /></span>
+            <span className="brand-emblem"><img src={assets.logo} alt="TGF ASSOCIATION logo" width={40} height={40} decoding="async" fetchPriority="high" /></span>
             <span className="brand-word">TGF ASSOCIATION</span>
           </button>
           <nav className="desktop-nav" aria-label="Main navigation">
@@ -165,7 +165,7 @@ export default function Home() {
         <section className="hero" style={{ backgroundImage: `url(${assets.hero})` }}>
           <div className="hero-overlay" />
           <div className="hero-content">
-            <div className="hero-kicker"><span className="mini-logo"><img src={assets.logo} alt="" /></span><div><strong>NTR NAGAR, ROAD NO:10, 11, 12.</strong><span>TGF ASSOCIATION community archive</span></div></div>
+            <div className="hero-kicker"><span className="mini-logo"><img src={assets.logo} alt="TGF ASSOCIATION logo" width={44} height={44} decoding="async" fetchPriority="high" /></span><div><strong>NTR NAGAR, ROAD NO:10, 11, 12.</strong><span>TGF ASSOCIATION community archive</span></div></div>
             <h1>TGF ASSOCIATION</h1>
             <p>A TGF ASSOCIATION collective celebrating Ganesh Chaturthi every year with idols, immersion, laddu auctions, and community memories.</p>
             <div className="hero-actions">
@@ -183,10 +183,18 @@ export default function Home() {
           <div className="wide-container">
             <SectionHeading icon={<Camera size={14} />} eyebrow="Gallery" title="Our idols, year by year" description="A living archive of the Ganesh idols welcomed home by TGF ASSOCIATION, arranged as a side-by-side collection of annual albums." />
             <div className="archive-grid">
-              {archive.map((card) => (
+              {archive.map((card, idx) => (
                 <article className={`archive-card ${card.year === "2025" ? "featured-record" : ""}`} key={card.year}>
                   {card.image ? (
-                    <img src={card.image} alt={`${card.year} Ganesh Chaturthi idol`} loading="lazy" />
+                    <img
+                      src={card.image}
+                      alt={`${card.year} Ganesh Chaturthi idol`}
+                      width={310}
+                      height={285}
+                      loading={idx <= 2 ? "eager" : "lazy"}
+                      decoding="async"
+                      {...(idx <= 2 ? { fetchPriority: "high" as const } : {})}
+                    />
                   ) : (
                     <div className="card-placeholder">
                       <Sparkles size={24} className="placeholder-icon" />
@@ -214,7 +222,14 @@ export default function Home() {
               {immersionAlbums.map((album) => (
                 <article className="immersion-card" key={album.year}>
                   {album.image ? (
-                    <img src={album.image} alt={`${album.year} immersion memories`} loading="lazy" />
+                    <img
+                      src={album.image}
+                      alt={`${album.year} immersion memories`}
+                      width={240}
+                      height={220}
+                      loading="lazy"
+                      decoding="async"
+                    />
                   ) : (
                     <div className="card-placeholder immersion-placeholder">
                       <Sparkles size={22} className="placeholder-icon" />
@@ -243,7 +258,14 @@ export default function Home() {
               {auctionYears.map((auction) => (
                 <article className="auction-year-card" key={auction.year}>
                   {auction.image ? (
-                    <img src={auction.image} alt={`${auction.year} laddu auction archive`} loading="lazy" />
+                    <img
+                      src={auction.image}
+                      alt={`${auction.year} laddu auction archive`}
+                      width={310}
+                      height={230}
+                      loading="lazy"
+                      decoding="async"
+                    />
                   ) : (
                     <div className="card-placeholder auction-placeholder">
                       <Landmark size={24} className="placeholder-icon" />
@@ -266,7 +288,17 @@ export default function Home() {
         <section className="chapter divider" id="gang">
           <div className="wide-container">
             <SectionHeading icon={<UsersRound size={14} />} eyebrow="The gang" title="TGF ASSOCIATION, together" description="The friends and volunteers who show up every year and make the celebration feel like home." />
-            <figure className="group-photo"><img src={assets.group} alt="TGF ASSOCIATION community volunteers together" /><figcaption>One TGF, many hands, and a shared reason to return every year.</figcaption></figure>
+            <figure className="group-photo">
+              <img
+                src={assets.group}
+                alt="TGF ASSOCIATION community volunteers together"
+                width={1000}
+                height={560}
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>One TGF, many hands, and a shared reason to return every year.</figcaption>
+            </figure>
           </div>
         </section>
 
@@ -329,7 +361,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer><div className="wide-container footer-content"><span className="footer-identity"><img src={assets.logo} alt="" />2026 TGF ASSOCIATION, NTR NAGAR, ROAD NO:10, 11, 12.</span><a className="footer-button" href="https://www.instagram.com/bundooks.crew?igsi=ajM2anZ4eWh3bDg4&utm_source=qr" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}><Instagram size={15} /> bundooks.crew</a></div></footer>
+      <footer><div className="wide-container footer-content"><span className="footer-identity"><img src={assets.logo} alt="TGF ASSOCIATION logo" width={26} height={26} loading="lazy" decoding="async" />2026 TGF ASSOCIATION, NTR NAGAR, ROAD NO:10, 11, 12.</span><a className="footer-button" href="https://www.instagram.com/bundooks.crew?igsi=ajM2anZ4eWh3bDg4&utm_source=qr" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}><Instagram size={15} /> bundooks.crew</a></div></footer>
     </div>
   );
 }
