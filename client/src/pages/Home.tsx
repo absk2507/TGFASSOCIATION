@@ -146,7 +146,7 @@ export default function Home() {
           <nav className="desktop-nav" aria-label="Main navigation">
             {navItems.map(([label, id]) => <button key={id} onClick={() => scrollToId(id)}>{label}</button>)}
           </nav>
-          <button className="follow-button" onClick={() => toast("Instagram journal link coming soon.")}><Instagram size={15} /> Our journal</button>
+          <a className="follow-button" href="https://www.instagram.com/bundooks.crew?igsi=ajM2anZ4eWh3bDg4&utm_source=qr" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}><Instagram size={15} /> bundooks.crew</a>
           <button className="menu-button" onClick={() => setOpenMenu(!openMenu)} aria-label="Toggle navigation menu">{openMenu ? <X /> : <Menu />}</button>
         </div>
         {openMenu && (
@@ -278,8 +278,8 @@ export default function Home() {
           <div className="wide-container">
             <SectionHeading icon={<Heart size={14} />} eyebrow="Support" title="Support TGF ASSOCIATION" description="Contributions support TGF, decorations, prasadam, sound system, idol, and community gifts." />
             <div className="support-layout">
-              <div className="qr-card" aria-label="QR code placeholder"><div className="qr-folio">NTR NAGAR LEDGER / 2026</div><div className="qr-grid"><div className="qr-center">₹</div></div><span>Scan to add your share through UPI</span></div>
-              <div className="support-card"><div className="upi-apps"><span>PhonePe</span><span>Google Pay</span><span>Paytm</span><span>BHIM</span></div><h3>Support TGF ASSOCIATION</h3><p>Scan the QR code or use the UPI ID below from any UPI app.</p><div className="upi-id"><div><span>UPI ID</span><b>tgfassociation@upi</b></div><button onClick={copyUpi}>{copied ? <Check size={15} /> : <Copy size={15} />}{copied ? "Copied" : "Copy"}</button></div><button className="button primary compact" onClick={() => toast("Opening your preferred UPI app is not available in this preview.")}><Heart size={14} /> Add your share via UPI</button><div className="support-needs"><span>⌂ Ganesh Idol</span><span>▦ TGF</span><span>◇ Decorations</span><span>◌ Sound System</span><span>♡ Prasadam</span><span>▥ Community Gifts</span></div></div>
+              <div className="qr-card" aria-label="QR code placeholder"><div className="qr-folio">NTR NAGAR LEDGER / 2026</div><div className="qr-grid"><div className="qr-center">₹</div></div><span>Scan to support via UPI</span></div>
+              <div className="support-card"><div className="upi-apps"><span>PhonePe</span><span>Google Pay</span><span>Paytm</span><span>BHIM</span></div><h3>Support TGF ASSOCIATION</h3><p>Scan the QR code or use the UPI ID below from any UPI app.</p><div className="upi-id"><div><span>UPI ID</span><b>tgfassociation@upi</b></div><button onClick={copyUpi}>{copied ? <Check size={15} /> : <Copy size={15} />}{copied ? "Copied" : "Copy"}</button></div></div>
             </div>
           </div>
         </section>
@@ -287,7 +287,7 @@ export default function Home() {
         <section className="chapter divider" id="find-us">
           <div className="wide-container">
             <SectionHeading icon={<MapPin size={14} />} eyebrow="Find us" title="The way back to NTR NAGAR" description="Visit TGF in NTR NAGAR, or find a familiar TGF ASSOCIATION voice for celebration updates and contributions." />
-            <div className="contact-grid"><article className="contact-card"><div className="contact-icon"><HomeIcon size={20} /></div><h3>TGF ASSOCIATION</h3><p>NTR NAGAR, ROAD NO:10, 11, 12.</p><button className="button primary compact" onClick={() => toast("Map directions will open shortly.")}><MapPin size={14} /> Pin TGF</button></article><article className="contact-card"><div className="contact-icon saffron"><MessageCircleHeart size={20} /></div><h3>Reach our circle</h3><a href="tel:+919059307481"><Phone size={13} /> +91 90593 07481</a><a href="tel:+919391277632"><Phone size={13} /> +91 93912 77632</a><a href="tel:+917386616435"><Phone size={13} /> +91 73866 16435</a><a href="mailto:tgfassociation@gmail.com"><Mail size={13} /> tgfassociation@gmail.com</a></article></div>
+            <div className="contact-grid"><article className="contact-card"><div className="contact-icon"><HomeIcon size={20} /></div><h3>TGF ASSOCIATION</h3><p>NTR NAGAR, ROAD NO:10, 11, 12.</p><a className="button primary compact" href="https://maps.app.goo.gl/GNckd875jwQb6S1v5?g_st=ic" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}><MapPin size={14} /> Pin TGF</a></article><article className="contact-card"><div className="contact-icon saffron"><MessageCircleHeart size={20} /></div><h3>Reach our circle</h3><a href="tel:+919059307481"><Phone size={13} /> +91 90593 07481</a><a href="tel:+919391277632"><Phone size={13} /> +91 93912 77632</a><a href="tel:+917386616435"><Phone size={13} /> +91 73866 16435</a><a href="mailto:tgfassociation@gmail.com"><Mail size={13} /> tgfassociation@gmail.com</a></article></div>
           </div>
         </section>
 
@@ -299,7 +299,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer><div className="wide-container footer-content"><span className="footer-identity"><img src={assets.logo} alt="" />2026 TGF ASSOCIATION, NTR NAGAR, ROAD NO:10, 11, 12.</span><button onClick={() => toast("Instagram journal link coming soon.")}><Instagram size={15} /> @tgf_association</button></div></footer>
+      <footer><div className="wide-container footer-content"><span className="footer-identity"><img src={assets.logo} alt="" />2026 TGF ASSOCIATION, NTR NAGAR, ROAD NO:10, 11, 12.</span><a className="footer-button" href="https://www.instagram.com/bundooks.crew?igsi=ajM2anZ4eWh3bDg4&utm_source=qr" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }}><Instagram size={15} /> bundooks.crew</a></div></footer>
     </div>
   );
 }
