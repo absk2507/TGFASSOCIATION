@@ -80,9 +80,12 @@ const auctionYears = [
   { year: "2021", image: assets.auction, record: "Rs. 9,500", title: "2021 Auction Record", note: "The inaugural 2021 winning contribution helped inaugurate our annual community tradition." },
 ];
 
-const members = [
+const seniorMembers = [
   { name: "Tarun Teja", role: "Founder", initials: "TT", hue: "#26275e" },
   { name: "Pavan", role: "Treasurer", initials: "P", hue: "#b87a36" },
+];
+
+const youthMembers = [
   { name: "Akhil Hari", role: "Event Organizer", initials: "AH", hue: "#3c3f81" },
   { name: "Balu", role: "Creative Director", initials: "B", hue: "#a54c64" },
   { name: "Sravan", role: "Volunteer", initials: "S", hue: "#50528f" },
@@ -270,7 +273,34 @@ export default function Home() {
         <section className="chapter divider" id="members">
           <div className="wide-container">
             <SectionHeading icon={<UsersRound size={14} />} eyebrow="TGF ASSOCIATION" title="The hands behind TGF" description="The people who arrange the lights, remember the small details, and return every year to bring our Ganesh Chaturthi home." />
-            <div className="member-strip" role="list">{members.map((member, index) => <article key={member.name} className="member-card" role="listitem"><span className="member-folio">Member / 0{index + 1}</span><div className="member-avatar" style={{ background: member.hue }}>{member.initials}</div><h3>{member.name}</h3><p>{member.role}</p></article>)}</div>
+
+            <div className="member-group">
+              <h3 className="member-group-title">Senior (Members & Guides)</h3>
+              <div className="member-strip" role="list">
+                {seniorMembers.map((member, index) => (
+                  <article key={member.name} className="member-card senior-card" role="listitem">
+                    <span className="member-folio">Senior / 0{index + 1}</span>
+                    <div className="member-avatar" style={{ background: member.hue }}>{member.initials}</div>
+                    <h3>{member.name}</h3>
+                    <p>{member.role}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <div className="member-group" style={{ marginTop: "1.8rem" }}>
+              <h3 className="member-group-title">Youth (Members & Volunteers)</h3>
+              <div className="member-strip" role="list">
+                {youthMembers.map((member, index) => (
+                  <article key={member.name} className="member-card youth-card" role="listitem">
+                    <span className="member-folio">Youth / 0{index + 1}</span>
+                    <div className="member-avatar" style={{ background: member.hue }}>{member.initials}</div>
+                    <h3>{member.name}</h3>
+                    <p>{member.role}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 

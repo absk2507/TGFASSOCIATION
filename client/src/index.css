@@ -132,8 +132,13 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .group-photo { margin: 0; overflow: hidden; border: 1px solid #dfd0b2; border-radius: 8px; background: #26275e; box-shadow: 0 8px 24px rgb(81 65 35 / 8%); }
 .group-photo img { display: block; width: 100%; max-height: 560px; object-fit: cover; object-position: center 82%; background: #1c1a36; }
 .group-photo figcaption { padding: .75rem 1rem; background: #fffcf7; border-top: 1px solid #eadfc9; color: #77706d; font-size: .65rem; }
+.member-group { display: grid; gap: .75rem; }
+.member-group-title { margin: 0; color: #2e2a3c; font: 600 1.05rem "Fraunces", Georgia, serif; display: flex; align-items: center; gap: .6rem; }
+.member-group-title::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, #d8c7a6, transparent); }
 .member-strip { display: flex; gap: .85rem; overflow-x: auto; padding: .1rem .1rem .6rem; scrollbar-color: #d27b3f #f1e3c4; scrollbar-width: thin; }
 .member-card { position: relative; min-width: 174px; flex: 1; padding: 1.05rem 1rem; text-align: center; border: 1px solid #e2d6bd; border-top: 4px solid #26275e; border-radius: 2px 2px 6px 6px; background: repeating-linear-gradient(0deg, rgb(255 255 255 / 83%) 0, rgb(255 255 255 / 83%) 28px, rgb(226 207 170 / 18%) 29px); }
+.senior-card { border-top-color: #c79d45; }
+.youth-card { border-top-color: #26275e; }
 .member-folio { display: block; margin-bottom: .55rem; color: #9e7a32; font-size: .47rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .member-avatar { width: 66px; height: 66px; display: grid; place-items: center; margin: 0 auto .65rem; border: 3px solid #fffaf2; border-radius: 50%; color: #fff9ed; box-shadow: 0 4px 11px rgb(57 41 49 / 18%); font: 600 1.1rem "Fraunces", Georgia, serif; }
 .member-card h3 { margin: 0; color: #a55c31; font: 550 1rem "Fraunces", Georgia, serif; }
