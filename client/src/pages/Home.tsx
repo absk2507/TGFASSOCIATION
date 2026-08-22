@@ -1,4 +1,4 @@
-﻿/**
+/**
  * TGF ASSOCIATION design reminder: preserve the long-form festival archive
  * rhythm, use parchment, indigo and saffron, with Fraunces editorial display
  * type and DM Sans metadata.
@@ -30,7 +30,7 @@ import { trpc } from "@/lib/trpc";
 const assetPath = (name: string) => `./assets/${name}`;
 
 const assets = {
-  logo: assetPath("softwarebois-mark.svg"),
+  logo: assetPath("tgf-logo.png"),
   hero: assetPath("hero-ganesha.jpg"),
   violetIdol: assetPath("idol-violet.jpg"),
   saffronIdol: assetPath("idol-saffron.jpg"),
