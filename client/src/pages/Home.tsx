@@ -52,12 +52,12 @@ const navItems = [
 ] as const;
 
 const archive = [
-  { year: "2026", date: "14 Sep 2026", sponsor: "Idol preparations in progress", image: assets.hero, status: "Soon", disabled: true },
-  { year: "2025", date: "27 Aug 2025", sponsor: "Idol hosted by Choppala Ravi", image: assets.violetIdol, status: "Album" },
-  { year: "2024", date: "07 Sep 2024", sponsor: "Idol hosted by Kranti Kiran", image: assets.saffronIdol, status: "Album" },
-  { year: "2023", date: "19 Sep 2023", sponsor: "Idol hosted by Annamreddi Venu", image: assets.idol, status: "Album" },
-  { year: "2022", date: "31 Aug 2022", sponsor: "Idol hosted by Senior Team", image: assets.procession, status: "Album" },
-  { year: "2021", date: "10 Sep 2021", sponsor: "Idol hosted by Lagudu Naveen", image: assets.community, status: "Album" },
+  { year: "2026", date: "14 Sep 2026", image: assets.hero, status: "Soon", disabled: true },
+  { year: "2025", date: "27 Aug 2025", image: assets.violetIdol, status: "Album" },
+  { year: "2024", date: "07 Sep 2024", image: assets.saffronIdol, status: "Album" },
+  { year: "2023", date: "19 Sep 2023", image: assets.idol, status: "Album" },
+  { year: "2022", date: "31 Aug 2022", image: assets.procession, status: "Album" },
+  { year: "2021", date: "10 Sep 2021", image: assets.community, status: "Album" },
 ];
 
 const immersionAlbums = [
@@ -155,9 +155,9 @@ export default function Home() {
         <section className="hero" style={{ backgroundImage: `url(${assets.hero})` }}>
           <div className="hero-overlay" />
           <div className="hero-content">
-            <div className="hero-kicker"><span className="mini-logo"><img src={assets.logo} alt="" /></span><div><strong>RAMPURAM, PENDURTHI, 531173</strong><span>TGF ASSOCIATION community archive</span></div></div>
+            <div className="hero-kicker"><span className="mini-logo"><img src={assets.logo} alt="" /></span><div><strong>NTR NAGAR, ROAD NO:10, 11, 12.</strong><span>TGF ASSOCIATION community archive</span></div></div>
             <h1>TGF ASSOCIATION</h1>
-            <p>A Rampuram youth collective celebrating Ganesh Chaturthi every year with idols, immersion, laddu auctions, and community memories.</p>
+            <p>A TGF ASSOCIATION collective celebrating Ganesh Chaturthi every year with idols, immersion, laddu auctions, and community memories.</p>
             <div className="hero-actions">
               <button className="button primary" onClick={() => scrollToId("gallery")}><Camera size={16} /> Open our archive</button>
               <button className="button light" onClick={() => scrollToId("donate")}><Heart size={16} /> Support Next Year</button>
@@ -178,7 +178,7 @@ export default function Home() {
                   <img src={card.image} alt={`${card.year} Ganesh Chaturthi archive`} />
                   <div className="archive-copy">
                     <div className="card-topline"><h3>{card.year}</h3><span>{card.status}</span></div>
-                    <p className="small-line">{card.date}</p><p className="small-line">{card.sponsor}</p>
+                    <p className="small-line">{card.date}</p>
                     <button className="archive-action" disabled={card.disabled} onClick={() => handleArchiveAction(`${card.year} gallery`)}>{card.disabled ? "Preparing this chapter" : `Open ${card.year} memories`}</button>
                   </div>
                 </article>
@@ -223,7 +223,7 @@ export default function Home() {
           <div className="wide-container">
             <SectionHeading icon={<Heart size={14} />} eyebrow="Support" title="Support TGF ASSOCIATION" description="Contributions support TGF, decorations, prasadam, sound system, idol, and community gifts." />
             <div className="support-layout">
-              <div className="qr-card" aria-label="QR code placeholder"><div className="qr-folio">RAMPURAM LEDGER / 2026</div><div className="qr-grid"><div className="qr-center">₹</div></div><span>Scan to add your share through UPI</span></div>
+              <div className="qr-card" aria-label="QR code placeholder"><div className="qr-folio">NTR NAGAR LEDGER / 2026</div><div className="qr-grid"><div className="qr-center">₹</div></div><span>Scan to add your share through UPI</span></div>
               <div className="support-card"><div className="upi-apps"><span>PhonePe</span><span>Google Pay</span><span>Paytm</span><span>BHIM</span></div><h3>Support TGF ASSOCIATION</h3><p>Scan the QR code or use the UPI ID below from any UPI app.</p><div className="upi-id"><div><span>UPI ID</span><b>tgfassociation@upi</b></div><button onClick={copyUpi}>{copied ? <Check size={15} /> : <Copy size={15} />}{copied ? "Copied" : "Copy"}</button></div><button className="button primary compact" onClick={() => toast("Opening your preferred UPI app is not available in this preview.")}><Heart size={14} /> Add your share via UPI</button><div className="support-needs"><span>⌂ Ganesh Idol</span><span>▦ TGF</span><span>◇ Decorations</span><span>◌ Sound System</span><span>♡ Prasadam</span><span>▥ Community Gifts</span></div></div>
             </div>
           </div>
@@ -231,8 +231,8 @@ export default function Home() {
 
         <section className="chapter divider" id="find-us">
           <div className="wide-container">
-            <SectionHeading icon={<MapPin size={14} />} eyebrow="Find us" title="The way back to Rampuram" description="Visit TGF in Rampuram, or find a familiar TGF ASSOCIATION voice for celebration updates and contributions." />
-            <div className="contact-grid"><article className="contact-card"><div className="contact-icon"><HomeIcon size={20} /></div><h3>TGF ASSOCIATION</h3><p>Rampuram Village<br />Pendurthi Mandal, Visakhapatnam<br />Andhra Pradesh, 531173</p><button className="button primary compact" onClick={() => toast("Map directions will open shortly.")}><MapPin size={14} /> Pin TGF</button></article><article className="contact-card"><div className="contact-icon saffron"><MessageCircleHeart size={20} /></div><h3>Reach our circle</h3><a href="tel:+919059307481"><Phone size={13} /> +91 90593 07481</a><a href="tel:+919391277632"><Phone size={13} /> +91 93912 77632</a><a href="tel:+917386616435"><Phone size={13} /> +91 73866 16435</a><a href="mailto:tgfassociation@gmail.com"><Mail size={13} /> tgfassociation@gmail.com</a></article></div>
+            <SectionHeading icon={<MapPin size={14} />} eyebrow="Find us" title="The way back to NTR NAGAR" description="Visit TGF in NTR NAGAR, or find a familiar TGF ASSOCIATION voice for celebration updates and contributions." />
+            <div className="contact-grid"><article className="contact-card"><div className="contact-icon"><HomeIcon size={20} /></div><h3>TGF ASSOCIATION</h3><p>NTR NAGAR, ROAD NO:10, 11, 12.<br />Visakhapatnam, Andhra Pradesh</p><button className="button primary compact" onClick={() => toast("Map directions will open shortly.")}><MapPin size={14} /> Pin TGF</button></article><article className="contact-card"><div className="contact-icon saffron"><MessageCircleHeart size={20} /></div><h3>Reach our circle</h3><a href="tel:+919059307481"><Phone size={13} /> +91 90593 07481</a><a href="tel:+919391277632"><Phone size={13} /> +91 93912 77632</a><a href="tel:+917386616435"><Phone size={13} /> +91 73866 16435</a><a href="mailto:tgfassociation@gmail.com"><Mail size={13} /> tgfassociation@gmail.com</a></article></div>
           </div>
         </section>
 
@@ -244,7 +244,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer><div className="wide-container footer-content"><span className="footer-identity"><img src={assets.logo} alt="" />2026 TGF ASSOCIATION, Rampuram, Visakhapatnam</span><button onClick={() => toast("Instagram journal link coming soon.")}><Instagram size={15} /> @tgf_association</button></div></footer>
+      <footer><div className="wide-container footer-content"><span className="footer-identity"><img src={assets.logo} alt="" />2026 TGF ASSOCIATION, NTR NAGAR, Visakhapatnam</span><button onClick={() => toast("Instagram journal link coming soon.")}><Instagram size={15} /> @tgf_association</button></div></footer>
     </div>
   );
 }

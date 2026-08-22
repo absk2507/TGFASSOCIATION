@@ -95,7 +95,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .archive-card { flex: 0 0 calc((100% - 2rem) / 3); }
 .archive-card img { display: block; width: 100%; height: 255px; object-fit: cover; }
 .archive-copy, .immersion-card > div { position: relative; padding: .9rem .9rem 1rem; }
-.archive-copy::before, .immersion-card > div::before { content: "TGF LEDGER / RAMPURAM"; display: block; margin-bottom: .55rem; color: #9e7a32; font-size: .48rem; font-weight: 800; letter-spacing: .1em; }
+.archive-copy::before, .immersion-card > div::before { content: "TGF LEDGER / NTR NAGAR"; display: block; margin-bottom: .55rem; color: #9e7a32; font-size: .48rem; font-weight: 800; letter-spacing: .1em; }
 .card-topline { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
 .card-topline h3 { margin: 0; color: #ab642c; font: 650 1.05rem/1 "Fraunces", Georgia, serif; }
 .card-topline span { padding: .18rem .3rem; border-radius: 4px; background: #fae8e4; color: #a54c64; font-size: .54rem; }
