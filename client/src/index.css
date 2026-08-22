@@ -93,7 +93,8 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .archive-card, .immersion-card { overflow: hidden; border: 1px solid #e5d6b9; border-radius: 2px 2px 7px 7px; background: repeating-linear-gradient(0deg, #fffcf5 0, #fffcf5 23px, rgb(231 216 186 / 24%) 24px); box-shadow: inset 0 1px 0 rgb(255 255 255 / 88%), 0 7px 18px rgb(81 65 35 / 5%); scroll-snap-align: start; transition: transform 200ms cubic-bezier(.23,1,.32,1), box-shadow 200ms ease; }
 .archive-card:hover, .immersion-card:hover { transform: translateY(-4px); box-shadow: 0 16px 26px rgb(81 65 35 / 10%); }
 .archive-card { flex: 0 0 calc((100% - 2rem) / 3); }
-.archive-card img { display: block; width: 100%; height: 255px; object-fit: cover; }
+.archive-card img { display: block; width: 100%; height: 285px; object-fit: cover; object-position: center 22%; background: #1a1830; transition: transform 250ms ease; }
+.archive-card:hover img { transform: scale(1.02); }
 .archive-copy, .immersion-card > div { position: relative; padding: .9rem .9rem 1rem; }
 .archive-copy::before, .immersion-card > div::before { content: "TGF LEDGER / NTR NAGAR"; display: block; margin-bottom: .55rem; color: #9e7a32; font-size: .48rem; font-weight: 800; letter-spacing: .1em; }
 .card-topline { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
@@ -128,9 +129,9 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .auction-year-card:hover { transform: translateY(-4px); box-shadow: 0 16px 26px rgb(81 65 35 / 10%); }
 .auction-year-card img { display: block; width: 100%; height: 230px; object-fit: cover; }
 .auction-year-copy { padding: .9rem .9rem 1rem; }.auction-folio { display: block; margin-bottom: .55rem; color: #9e7a32; font-size: .48rem; font-weight: 800; letter-spacing: .1em; }.auction-year-copy h3 { margin: 0 0 .65rem; color: #a75e2b; font: 560 1.4rem/1 "Fraunces", Georgia, serif; }.auction-year-copy h4 { margin: 0; color: #2c293d; font-size: .72rem; }.auction-year-copy p { min-height: 54px; margin: .55rem 0 0; color: #66616a; font-size: .64rem; line-height: 1.6; }
-.group-photo { margin: 0; overflow: hidden; border-radius: 6px; background: #eee4d0; }
-.group-photo img { display: block; width: 100%; aspect-ratio: 16/8.25; object-fit: cover; }
-.group-photo figcaption { padding: .65rem .8rem; color: #77706d; font-size: .65rem; }
+.group-photo { margin: 0; overflow: hidden; border: 1px solid #dfd0b2; border-radius: 8px; background: #26275e; box-shadow: 0 8px 24px rgb(81 65 35 / 8%); }
+.group-photo img { display: block; width: 100%; max-height: 560px; object-fit: cover; object-position: center 82%; background: #1c1a36; }
+.group-photo figcaption { padding: .75rem 1rem; background: #fffcf7; border-top: 1px solid #eadfc9; color: #77706d; font-size: .65rem; }
 .member-strip { display: flex; gap: .85rem; overflow-x: auto; padding: .1rem .1rem .6rem; scrollbar-color: #d27b3f #f1e3c4; scrollbar-width: thin; }
 .member-card { position: relative; min-width: 174px; flex: 1; padding: 1.05rem 1rem; text-align: center; border: 1px solid #e2d6bd; border-top: 4px solid #26275e; border-radius: 2px 2px 6px 6px; background: repeating-linear-gradient(0deg, rgb(255 255 255 / 83%) 0, rgb(255 255 255 / 83%) 28px, rgb(226 207 170 / 18%) 29px); }
 .member-folio { display: block; margin-bottom: .55rem; color: #9e7a32; font-size: .47rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }

@@ -35,9 +35,10 @@ const assets = {
   idol2025: assetPath("idol-2025.jpg"),
   idol2024: assetPath("idol-2024.png"),
   idol2023: assetPath("idol-2023.jpg"),
+  idol2022: assetPath("idol-2022.jpg"),
   idol2021: assetPath("idol-2021.jpg"),
   auction: assetPath("auction-celebration.jpg"),
-  group: assetPath("community-group.jpg"),
+  group: assetPath("community-together.jpg"),
   community: assetPath("festival-community.jpg"),
   procession: assetPath("festival-procession.jpg"),
 };
@@ -57,7 +58,7 @@ const archive = [
   { year: "2025", date: "27 Aug 2025", image: assets.idol2025, status: "Album", disabled: false },
   { year: "2024", date: "07 Sep 2024", image: assets.idol2024, status: "Album", disabled: false },
   { year: "2023", date: "19 Sep 2023", image: assets.idol2023, status: "Album", disabled: false },
-  { year: "2022", date: "31 Aug 2022", image: null, status: "Archive", disabled: true, note: "Archive album coming soon" },
+  { year: "2022", date: "31 Aug 2022", image: assets.idol2022, status: "Album", disabled: false },
   { year: "2021", date: "10 Sep 2021", image: assets.idol2021, status: "Album", disabled: false },
 ];
 
@@ -286,7 +287,7 @@ export default function Home() {
         <section className="chapter divider" id="find-us">
           <div className="wide-container">
             <SectionHeading icon={<MapPin size={14} />} eyebrow="Find us" title="The way back to NTR NAGAR" description="Visit TGF in NTR NAGAR, or find a familiar TGF ASSOCIATION voice for celebration updates and contributions." />
-            <div className="contact-grid"><article className="contact-card"><div className="contact-icon"><HomeIcon size={20} /></div><h3>TGF ASSOCIATION</h3><p>NTR NAGAR, ROAD NO:10, 11, 12.<br />Visakhapatnam, Andhra Pradesh</p><button className="button primary compact" onClick={() => toast("Map directions will open shortly.")}><MapPin size={14} /> Pin TGF</button></article><article className="contact-card"><div className="contact-icon saffron"><MessageCircleHeart size={20} /></div><h3>Reach our circle</h3><a href="tel:+919059307481"><Phone size={13} /> +91 90593 07481</a><a href="tel:+919391277632"><Phone size={13} /> +91 93912 77632</a><a href="tel:+917386616435"><Phone size={13} /> +91 73866 16435</a><a href="mailto:tgfassociation@gmail.com"><Mail size={13} /> tgfassociation@gmail.com</a></article></div>
+            <div className="contact-grid"><article className="contact-card"><div className="contact-icon"><HomeIcon size={20} /></div><h3>TGF ASSOCIATION</h3><p>NTR NAGAR, ROAD NO:10, 11, 12.</p><button className="button primary compact" onClick={() => toast("Map directions will open shortly.")}><MapPin size={14} /> Pin TGF</button></article><article className="contact-card"><div className="contact-icon saffron"><MessageCircleHeart size={20} /></div><h3>Reach our circle</h3><a href="tel:+919059307481"><Phone size={13} /> +91 90593 07481</a><a href="tel:+919391277632"><Phone size={13} /> +91 93912 77632</a><a href="tel:+917386616435"><Phone size={13} /> +91 73866 16435</a><a href="mailto:tgfassociation@gmail.com"><Mail size={13} /> tgfassociation@gmail.com</a></article></div>
           </div>
         </section>
 
@@ -298,7 +299,7 @@ export default function Home() {
         </section>
       </main>
 
-      <footer><div className="wide-container footer-content"><span className="footer-identity"><img src={assets.logo} alt="" />2026 TGF ASSOCIATION, NTR NAGAR, Visakhapatnam</span><button onClick={() => toast("Instagram journal link coming soon.")}><Instagram size={15} /> @tgf_association</button></div></footer>
+      <footer><div className="wide-container footer-content"><span className="footer-identity"><img src={assets.logo} alt="" />2026 TGF ASSOCIATION, NTR NAGAR, ROAD NO:10, 11, 12.</span><button onClick={() => toast("Instagram journal link coming soon.")}><Instagram size={15} /> @tgf_association</button></div></footer>
     </div>
   );
 }
